@@ -1,54 +1,73 @@
-# Remotion video
+# remotion-shorts：React技術を活用した動画自動生成・演出テンプレートシステム
 
-<p align="center">
-  <a href="https://github.com/remotion-dev/logo">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://github.com/remotion-dev/logo/raw/main/animated-logo-banner-dark.apng">
-      <img alt="Animated Remotion Logo" src="https://github.com/remotion-dev/logo/raw/main/animated-logo-banner-light.gif">
-    </picture>
-  </a>
-</p>
+本リポジトリは、Web標準技術（HTML5/CSS/React）をベースに、プログラムから直接動画ファイルを自動レンダリングするシステムです。
+動画編集ソフト（Premiere ProやAfter Effectsなど）を立ち上げることなく、テキストやパラメーターの変更に合わせて、高品質な動画（オープニング演出、SNS向け縦型ショート動画、クロマキー合成用素材など）を何本でも自動生成・量産することができます。
 
-Welcome to your Remotion project!
+---
 
-## Commands
+## 💡 開発の背景と目的
+従来の動画制作では、文字情報や数値を少し変更するだけでも、編集ソフトを起動して手動でテキストを書き換え、レンダリング（書き出し）を待つ必要がありました。
+本システムは、これらの**「単純だが時間の割かれる動画編集・修正作業」をプログラムで完全に自動化する**ことを目的として開発しました。
 
-**Install Dependencies**
+---
 
-```console
-npm i
+## 🛠️ 主な機能・特徴
+
+1. **プログラムによる完全自動レンダリング**
+   - 設定ファイルやデータソース（テキスト、数値など）を基に、コマンドひとつでMP4等の動画ファイルを自動出力します。
+2. **クロマキー合成（グリーンバック）用素材の出力**
+   - OBS Studio等の配信ソフトや、他の動画編集ソフトに重ねて利用できるグリーンバック（透過用背景）の動画テンプレートを出力可能です。
+3. **インタラクティブなアニメーション設計**
+   - 紙吹雪（Confetti）エフェクト、星のまたたき（Stars）、カスタムタイトルや字幕（Subtitle）などをReactのコンポーネントとして個別に部品化。デザインの追加・修正が容易です。
+4. **マルチレイアウト対応**
+   - 横型（1920x1080：YouTube、番組用オープニングなど）と縦型（1080x1920：TikTok、YouTube Shorts、Instagram Reelsなど）の双方に最適化したサイズでレンダリングが可能です。
+
+---
+
+## 💻 技術スタック
+- **ライブラリ/フレームワーク:** React 19 / Remotion 4
+- **スタイリング:** Tailwind CSS
+- **プログラミング言語:** TypeScript
+- **実行環境/ビルドツール:** Node.js
+
+---
+
+## 🚀 クライアント様への導入・ビジネスメリット
+- **作業時間の削減:** 大量のテキストやデータを差し替えて作成する動画（商品紹介、ニュース、ランキング動画等）の制作コストをほぼゼロに削減します。
+- **Webシステムとの親和性:** Webシステムやデータベースと接続することで、「ホームページ上で入力した情報を元に、サーバー側で動画を自動生成してユーザーにダウンロードさせる」といった高度な自動化サービスの構築が可能です。
+
+---
+
+## 📂 構成と実行方法
+
+### 動作環境
+- Node.js がインストールされている必要があります。
+
+### 1. 依存ライブラリのインストール
+```bash
+npm install
 ```
 
-**Start Preview**
-
-```console
+### 2. 開発用プレビュー画面の起動
+ブラウザ上でアニメーションやレイアウトをリアルタイムに確認・調整できるスタジオ画面を起動します。
+```bash
 npm run dev
 ```
 
-**Render video**
+### 3. 動画ファイルのレンダリング（書き出し）
+コマンドラインから動画ファイル（MP4）を書き出します。
+```bash
+# 標準コンポジションのレンダリング
+npx remotion render MyComp out/video.mp4
 
-```console
-npx remotion render
+# 番組オープニング演出（横型）のレンダリング
+npx remotion render RadioOP out/radio_op.mp4
+
+# クロマキー合成用グリーンバック映像のレンダリング
+npx remotion render RadioOP-GreenScreen out/radio_op_green.mp4
 ```
 
-**Upgrade Remotion**
+---
 
-```console
-npx remotion upgrade
-```
-
-## Docs
-
-Get started with Remotion by reading the [fundamentals page](https://www.remotion.dev/docs/the-fundamentals).
-
-## Help
-
-We provide help on our [Discord server](https://discord.gg/6VzzNDwUwV).
-
-## Issues
-
-Found an issue with Remotion? [File an issue here](https://github.com/remotion-dev/remotion/issues/new).
-
-## License
-
-Note that for some entities a company license is needed. [Read the terms here](https://github.com/remotion-dev/remotion/blob/main/LICENSE.md).
+## 📄 ライセンス・規約について
+本システムは Remotion を使用して構築されています。商用利用にあたっては、Remotion社のライセンス規約（企業の規模に応じてライセンス購入が必要な場合があります）が適用されます。詳細は [Remotion公式サイト](https://www.remotion.dev/docs/license) をご確認ください。
